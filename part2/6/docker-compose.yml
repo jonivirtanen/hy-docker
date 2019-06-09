@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  backend:
+    image: example-backend
+    ports:
+      - 8000:8000
+    volumes:
+      - ./backend/logs.txt:/srv/app/backend/logs.txt
+    environment:
+      - REDIS=redis
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=salasana
+      - DB_NAME=testi
+      - DB_HOST=db
+  frontend:
+    image: example-frontend    
+    ports:
+      - 5000:5000
+  redis:
+    image: redis
+    ports:
+      - 6379:6379
+  db:
+    image: postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_PASSWORD: salasana
+      POSTGRES_DB: testi
+    container_name: db_example
+    volumes:
+      - database:/var/lib/postgresql/data
+
+volumes:
+  database:

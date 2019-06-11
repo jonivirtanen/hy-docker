@@ -1,0 +1,5 @@
+FROM node
+example-backend 967MB
+
+FROM node:12-alpine
+backend-alpine 137MB

@@ -1,0 +1,12 @@
+FROM node
+example-frontend 1.06GB
+
+FROM node:12-alpine
+frontti-alpine 233MB
+
+##############
+https://stackoverflow.com/questions/52259563/how-can-i-reduce-my-docker-image-size-for-deployment
+mukaillen
+##############
+FROM node:12-alpine
+frontti-alpine 221MB

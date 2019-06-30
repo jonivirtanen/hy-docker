@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+  labels: {
+    app: backend,
+  }
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend-example
+  template:
+    metadata:
+      labels:
+        app: backend-example
+    spec:
+      containers:
+      - name: hy-backend-alpine
+        image: vijoni/hy-backend-alpine:latest
+        ports:
+        - containerPort: 8000
+        env:
+        - name: REDIS
+          value: redis-service
+        - name: REDIS_PORT
+          value: "6379"
+        - name: FRONT_URL
+          value: http://frontend-service:5000
+        - name: DB_USERNAME
+          value: hy-docker
+        - name: DB_PASSWORD
+          value: salasana
+        - name: DB_HOST
+          value: db-service
